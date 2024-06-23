@@ -1,5 +1,6 @@
 package docpat.met.api.model;
 
+import docpat.met.api.dto.DoctorDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -24,4 +25,13 @@ public class Doctor {
     private String phone;
     @Embedded
     private Address address;
+
+    public Doctor(DoctorDTO doctorData) {
+        this.name = doctorData.name();
+        this.crm = doctorData.crm();
+        this.specialty = doctorData.specialty();
+        this.email = doctorData.email();
+        this.phone = doctorData.phone();
+        this.address = new Address(doctorData.address());
+    }
 }
