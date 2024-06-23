@@ -1,0 +1,17 @@
+package docpat.met.api.model;
+
+public enum Specialty {
+    CARDIOLOGIA,
+    CLINICO_GERAL,
+    DERMATOLOGIA,
+    ENDOCRINOLOGIA,
+    GASTROENTEROLOGIA,
+    GINECOLOGIA,
+    NEUROLOGIA,
+    OFTALMOLOGIA,
+    ORTOPEDIA,
+    OTORRINOLARINGOLOGIA,
+    PEDIATRIA,
+    PSIQUIATRIA,
+    UROLOGIA
+}
