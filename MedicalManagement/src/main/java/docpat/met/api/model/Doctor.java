@@ -1,6 +1,6 @@
 package docpat.met.api.model;
 
-import docpat.met.api.dto.DoctorDTO;
+import docpat.met.api.dto.DoctorCreateDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -26,7 +26,7 @@ public class Doctor {
     @Embedded
     private Address address;
 
-    public Doctor(DoctorDTO doctorData) {
+    public Doctor(DoctorCreateDTO doctorData) {
         this.name = doctorData.name();
         this.crm = doctorData.crm();
         this.specialty = doctorData.specialty();
