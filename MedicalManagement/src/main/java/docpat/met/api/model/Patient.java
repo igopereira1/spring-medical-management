@@ -1,6 +1,7 @@
 package docpat.met.api.model;
 
 import docpat.met.api.dto.PatientCreateDTO;
+import docpat.met.api.dto.PatientUpdateDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -31,5 +32,14 @@ public class Patient {
         this.email = patientData.email();
         this.phone = patientData.phone();
         this.address = new Address(patientData.address());
+    }
+
+    public void updatePatientData(PatientUpdateDTO patientData) {
+        if (patientData.phone() != null) {
+            this.phone = patientData.phone();
+        }
+        if (patientData.address() != null) {
+            this.address.updateAddressData(patientData.address());
+        }
     }
 }
