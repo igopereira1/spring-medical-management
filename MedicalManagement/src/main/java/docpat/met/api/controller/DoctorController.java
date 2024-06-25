@@ -26,7 +26,7 @@ public class DoctorController {
 
     @GetMapping
     public Page<DoctorListDTO> getDoctors(Pageable pageable) {
-        return doctorRepository.findAll(pageable).map(DoctorListDTO::new);
+        return doctorRepository.findAllByActiveTrue(pageable).map(DoctorListDTO::new);
     }
 
     @PutMapping
