@@ -2,6 +2,7 @@ package docpat.met.api.controller;
 
 import docpat.met.api.dto.DoctorCreateDTO;
 import docpat.met.api.dto.DoctorListDTO;
+import docpat.met.api.dto.DoctorUpdateDTO;
 import docpat.met.api.model.Doctor;
 import docpat.met.api.repository.DoctorRepository;
 import jakarta.validation.Valid;
@@ -26,5 +27,12 @@ public class DoctorController {
     @GetMapping
     public Page<DoctorListDTO> getDoctors(Pageable pageable) {
         return doctorRepository.findAll(pageable).map(DoctorListDTO::new);
+    }
+
+    @PutMapping
+    @Transactional
+    public void updateDoctor(@RequestBody @Valid DoctorUpdateDTO doctorData) {
+        var doctor = doctorRepository.findById(doctorData.id()).orElseThrow();
+        doctor.updateDoctorData(doctorData);
     }
 }
