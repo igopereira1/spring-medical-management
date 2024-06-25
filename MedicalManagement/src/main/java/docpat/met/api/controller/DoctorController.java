@@ -35,4 +35,11 @@ public class DoctorController {
         var doctor = doctorRepository.findById(doctorData.id()).orElseThrow();
         doctor.updateDoctorData(doctorData);
     }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void deleteDoctor(@PathVariable Long id) {
+        var doctor = doctorRepository.findById(id).orElseThrow();
+        doctor.setInactive();
+    }
 }
