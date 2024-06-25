@@ -1,15 +1,15 @@
 package docpat.met.api.controller;
 
-import docpat.met.api.dto.DoctorDTO;
+import docpat.met.api.dto.DoctorCreateDTO;
+import docpat.met.api.dto.DoctorListDTO;
 import docpat.met.api.model.Doctor;
 import docpat.met.api.repository.DoctorRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("medicos")
@@ -19,7 +19,12 @@ public class DoctorController {
 
     @PostMapping
     @Transactional
-    public void createDoctor(@RequestBody @Valid DoctorDTO doctor) {
+    public void createDoctor(@RequestBody @Valid DoctorCreateDTO doctor) {
         doctorRepository.save(new Doctor(doctor));
+    }
+
+    @GetMapping
+    public Page<DoctorListDTO> getDoctors(Pageable pageable) {
+        return doctorRepository.findAll(pageable).map(DoctorListDTO::new);
     }
 }
