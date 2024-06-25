@@ -26,6 +26,7 @@ public class Doctor {
     private String phone;
     @Embedded
     private Address address;
+    private Boolean active;
 
     public Doctor(DoctorCreateDTO doctorData) {
         this.name = doctorData.name();
@@ -34,6 +35,7 @@ public class Doctor {
         this.email = doctorData.email();
         this.phone = doctorData.phone();
         this.address = new Address(doctorData.address());
+        this.active = true;
     }
 
     public void updateDoctorData(DoctorUpdateDTO doctorData) {
@@ -43,5 +45,9 @@ public class Doctor {
         if (doctorData.address() != null) {
             this.address.updateAddressData(doctorData.address());
         }
+    }
+
+    public void setInactive() {
+        this.active = false;
     }
 }
